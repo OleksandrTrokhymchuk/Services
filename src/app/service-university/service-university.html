@@ -4,6 +4,7 @@
 
 <div *ngIf="universities.length > 0">
   <h3>Search results for "{{ receivedMessage }}"</h3>
+  <h3>Saved universities: {{ savedUniversities.length }}</h3>
   <button (click)="resetData()">Reset</button>
   <table>
     <thead>
@@ -28,7 +29,11 @@
            <p>{{uni.domains[0]}}</p>
         </td>
         <td>
-          <input type="checkbox" [(ngModel)]="uni.selected">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="uni.selected"
+            (ngModelChange)="onCheckboxChange(uni.selected, uni)"
+          >
         </td>
       </tr>
     </tbody>

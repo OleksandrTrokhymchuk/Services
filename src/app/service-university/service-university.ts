@@ -27,6 +27,15 @@ export class ServiceUniversity implements OnInit {
   protected receivedMessage: string | null = null
 
   protected universities: University[] = []
+  protected savedUniversities: University[] = []
+
+  protected onCheckboxChange(isChecked: boolean, savedUni: University) {
+    if (isChecked) {
+      this.savedUniversities = [...this.savedUniversities, savedUni]
+    } else {
+      this.savedUniversities = this.savedUniversities.filter(uni => uni.name !== savedUni.name)
+    }
+  }
 
   constructor(private sharedService: SharedService, private http: HttpClient) {}
 
