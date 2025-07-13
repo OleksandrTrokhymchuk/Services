@@ -1,15 +1,7 @@
-<input
-  type="text"
-  placeholder="Enter text..."
-  [(ngModel)]="inputValue" >
-
-<button
-    (click)="onSearchClick()"
+<input 
+    #myInput 
+    type="text" 
+    placeholder="Enter text..."
 >
-    Search
-</button>
+<button (click)="sendMessage(myInput.value)">Search</button>
 
-<p>
-  <!-- test -->
-  You search: {{ displayedValue }} 
-</p>

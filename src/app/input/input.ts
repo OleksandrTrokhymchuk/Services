@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { SharedService } from '../shared.service'
 
 @Component({
   selector: 'app-input',
@@ -8,11 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './input.css'
 })
 export class Input {
-  protected inputValue: string = ""
-  protected displayedValue: string = ""
+  constructor(private sharedService: SharedService) {}
 
-  onSearchClick(): void {
-    this.displayedValue = this.inputValue
-    this.inputValue = ""
+  sendMessage(value: string) {
+    this.sharedService.updateMessage(value)
   }
 }
