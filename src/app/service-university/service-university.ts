@@ -50,6 +50,11 @@ export class ServiceUniversity implements OnInit {
     })
   }
 
+  protected resetData(): void {
+    this.universities = []
+    this.errorMessage = null
+  }
+
   ngOnInit() {
     this.sharedService.currentMessage.subscribe(message => {
       this.receivedMessage = message

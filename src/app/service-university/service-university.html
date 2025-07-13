@@ -1,11 +1,10 @@
-<p>You search: {{ receivedMessage }}</p>
-
 <div *ngIf="errorMessage" style="color: red;">
   <p>{{ errorMessage }}</p>
 </div>
 
 <div *ngIf="universities.length > 0">
-  <h3>Знайдені університети:</h3>
+  <h3>Search results for "{{ receivedMessage }}"</h3>
+  <button (click)="resetData()">Reset</button>
   <table>
     <thead>
       <tr>
