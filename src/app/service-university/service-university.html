@@ -9,6 +9,7 @@
   <table>
     <thead>
       <tr>
+        <th>№</th>
         <th>Country</th>
         <th>Name</th>
         <th>Web page</th>
@@ -16,7 +17,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let uni of universities">
+      <tr *ngFor="let uni of universities; let i = index">
+        <td>{{ i + 1 }}</td>
         <td>{{ uni.country }}</td>
         <td>{{ uni.name }}</td>
         <td>
