@@ -1,7 +1,34 @@
 <p>You search: {{ receivedMessage }}</p>
 
-<p *ngIf="alpha_two_code">{{alpha_two_code}}</p>
-<p *ngIf="country">{{country}}</p>
-<p *ngIf="name">{{name}}</p>
-<p *ngIf="web_page">{{web_page}}</p>
-<p *ngIf="state_province">{{state_province}}</p>
+<div *ngIf="errorMessage" style="color: red;">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="universities.length > 0">
+  <h3>Знайдені університети:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Name</th>
+        <th>Web page</th>
+        <th>Domain</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let uni of universities">
+        <td>{{ uni.country }}</td>
+        <td>{{ uni.name }}</td>
+        <td>
+            <a [href]="uni.web_pages[0]" target="_blank">{{uni.web_pages[0]}}</a>        </td>
+        <td>
+           <p>{{uni.domains[0]}}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="universities.length === 0 && !errorMessage">
+  <p>No universities have been found</p>
+</div>
