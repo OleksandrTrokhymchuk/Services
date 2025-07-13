@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './service-university.scss'
 })
 export class ServiceUniversity implements OnInit {
-  receivedMessage = ''
+  protected receivedMessage: string | null = null
 
   constructor(private sharedService: SharedService, private http: HttpClient) {}
 
@@ -51,7 +51,7 @@ export class ServiceUniversity implements OnInit {
   ngOnInit() {
     this.sharedService.currentMessage.subscribe(message => {
       this.receivedMessage = message
-      this.fetchData(message)
+      this.receivedMessage && this.fetchData(message)
     })
   }
 }
