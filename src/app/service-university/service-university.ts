@@ -42,13 +42,15 @@ export class ServiceUniversity implements OnInit {
   protected errorMessage: string | null = null
 
   fetchData(searchParams: string): void {
-    const apiUrl = `http://universities.hipolabs.com/search?country=${searchParams}`
+    const originalUrl = `http://universities.hipolabs.com/search?country=${searchParams}`
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(originalUrl)}`
 
     this.errorMessage = null
 
-    this.http.get<University[]>(apiUrl).subscribe({
-      next: (response: University[]) => {
-        this.universities = response.map(uni => ({ ...uni, selected: false }))
+    this.http.get<{ contents: string }>(proxyUrl).subscribe({
+      next: (response) => {
+        const data = JSON.parse(response.contents) as University[]
+        this.universities = data.map(uni => ({ ...uni, selected: false }))
         console.log('response:', this.universities)
 
       },
