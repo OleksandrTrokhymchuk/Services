@@ -9,9 +9,12 @@ import { SharedService } from '../shared.service'
   styleUrl: './input.css'
 })
 export class Input {
+  protected myInput: string = '' 
+
   constructor(private sharedService: SharedService) {}
 
-  sendMessage(value: string) {
-    this.sharedService.updateMessage(value)
+  sendMessage() {
+    this.sharedService.updateMessage(this.myInput)
+    this.myInput = ''
   }
 }

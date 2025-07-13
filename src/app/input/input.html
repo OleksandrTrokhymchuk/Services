@@ -1,7 +1,7 @@
 <input 
-    #myInput 
     type="text" 
     placeholder="Enter text..."
+    [(ngModel)]="myInput"
 >
-<button (click)="sendMessage(myInput.value)">Search</button>
+<button (click)="sendMessage()">Search</button>
 
