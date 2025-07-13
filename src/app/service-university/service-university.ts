@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { SharedService } from '../shared.service'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface University {
   name: string
@@ -10,11 +11,12 @@ interface University {
   web_pages: string[]
   domains: string[]
   alpha_two_code: string
+  selected: boolean
 }
 
 @Component({
   selector: 'app-service-university',
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, FormsModule],
   templateUrl: './service-university.html',
   styleUrl: './service-university.scss'
 })
@@ -28,7 +30,6 @@ export class ServiceUniversity implements OnInit {
 
   constructor(private sharedService: SharedService, private http: HttpClient) {}
 
-  protected apiData: any = null
   protected errorMessage: string | null = null
 
   fetchData(searchParams: string): void {
@@ -38,8 +39,8 @@ export class ServiceUniversity implements OnInit {
 
     this.http.get<University[]>(apiUrl).subscribe({
       next: (response: University[]) => {
-        this.universities = response
-        console.log('response:', this.apiData)
+        this.universities = response.map(uni => ({ ...uni, selected: false }))
+        console.log('response:', this.universities)
 
       },
       error: (error) => {
