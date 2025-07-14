@@ -3,6 +3,7 @@
     type="text" 
     placeholder="Enter country..."
     [(ngModel)]="myInput"
+    (keyup.enter)="sendMessage()"
   >
   <button (click)="sendMessage()" class="search-button">Search</button>
 </div>
