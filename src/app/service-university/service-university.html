@@ -44,6 +44,6 @@
   <p>No universities have been found</p>
 </div>
 
-<div *ngIf="universities.length === 0 && receivedMessage">
+<div *ngIf="universities.length === 0 && receivedMessage && !errorMessage">
   <p>Wait...</p>
 </div>
