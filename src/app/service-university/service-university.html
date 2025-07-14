@@ -40,6 +40,10 @@
   </table>
 </div>
 
-<div *ngIf="universities.length === 0 && !errorMessage">
+<div *ngIf="universities.length === 0 && !errorMessage && !receivedMessage">
   <p>No universities have been found</p>
+</div>
+
+<div *ngIf="universities.length === 0 && receivedMessage">
+  <p>Wait...</p>
 </div>
